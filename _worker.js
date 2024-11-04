@@ -1,5 +1,4 @@
-// 是否启用白名单检查。如果想放开所有请求，只需将 ENABLE_WHITELIST_CHECK 设置为 false。如果你想启用白名单检查，设置为 true
-。
+// 是否启用白名单检查。如果想放开所有请求，只需将 ENABLE_WHITELIST_CHECK 设置为 false。如果你想启用白名单检查，设置为 true。
 const ENABLE_WHITELIST_CHECK = false
 
 // 目标域名白名单
@@ -55,8 +54,7 @@ export default {
     const isDomainAllowed = targetDomains.some(domain => targetDomain.startsWith(domain))
     if (!isDomainAllowed) {
       // 如要提示允许的目标地址，可以在 return 处加上 Allowed domains are: ${targetDomains.join(", ")}
-      return new Response(` Error: Invalid target domain.\nPath: ${path}\ntargetUrl:${targetUrl}\ntargetDomain:${targetDoma
-in}\nhttps://google.com\n`, { status: 400 })
+      return new Response(` Error: Invalid target domain.\nPath: ${path}\ntargetUrl:${targetUrl}\ntargetDomain:${targetDomain}\nhttps://google.com\n`, { status: 400 })
     }
 
     // 判断 URL 是否包含白名单中的字符串（不区分大小写）
@@ -66,8 +64,7 @@ in}\nhttps://google.com\n`, { status: 400 })
 
     const isUrlAllowed=true
     if (!isUrlAllowed) {
-      // 如要提示允许的白名单，可以在 return 处加上 URL must contain one of the following strings: ${urlWhitelist.join(", "
-)}
+      // 如要提示允许的白名单，可以在 return 处加上 URL must contain one of the following strings: ${urlWhitelist.join(", ")}
       return new Response(` Error: The URL is not in the whitelist.\n https://microsoft.com\n`, { status: 403 })
     }
   }
@@ -84,3 +81,4 @@ in}\nhttps://google.com\n`, { status: 400 })
   return fetch(modifiedRequest)
 }
 }
+
