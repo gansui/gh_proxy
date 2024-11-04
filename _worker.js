@@ -1,15 +1,17 @@
-// 是否启用白名单检查。如果想放开所有请求，只需将 ENABLE_WHITELIST_CHECK 设置为 false。如果你想启用白名单检查，设置为 true。
-const ENABLE_WHITELIST_CHECK = true
+// 是否启用白名单检查。如果想放开所有请求，只需将 ENABLE_WHITELIST_CHECK 设置为 false。如果你想启用白名单检查，设置为 true
+。
+const ENABLE_WHITELIST_CHECK = false
 
 // 目标域名白名单
 const targetDomains = [
   "https://github.com",
-  "https://raw.githubusercontent.com",
+  "https://githubusercontent.com",
   "https://google.com",
-  "https://gist.githubusercontent.com"
+  "https://huggingface.co"
+//  "https://gist.githubusercontent.com"
 ]
 
-const PADDING = 'xxxx'
+const PADDING = 'xdfxdg'
 // URL 白名单字符串
 const urlWhitelist = [
   "user-id-1",
@@ -36,7 +38,7 @@ export default {
 
   const padding = targetUrl.split('/')[0] // 获取目标域名
   if(!(padding === PADDING)){
-    return new Response(` Error: Invalid target domain.\npadding: ${padding}\ntargetUrl: ${targetUrl}\nhttps://padding.com\n`, { status: 300 })
+    return new Response(` Error: Invalid target domain.\ntargetUrl: ${targetUrl}\n`, { status: 399 })
   }
 
   let httpsIndex = targetUrl.indexOf('https://');
@@ -53,7 +55,8 @@ export default {
     const isDomainAllowed = targetDomains.some(domain => targetDomain.startsWith(domain))
     if (!isDomainAllowed) {
       // 如要提示允许的目标地址，可以在 return 处加上 Allowed domains are: ${targetDomains.join(", ")}
-      return new Response(` Error: Invalid target domain.\nPath: ${path}\ntargetUrl:${targetUrl}\ntargetDomain:${targetDomain}\nhttps://google.com\n`, { status: 400 })
+      return new Response(` Error: Invalid target domain.\nPath: ${path}\ntargetUrl:${targetUrl}\ntargetDomain:${targetDoma
+in}\nhttps://google.com\n`, { status: 400 })
     }
 
     // 判断 URL 是否包含白名单中的字符串（不区分大小写）
@@ -63,7 +66,8 @@ export default {
 
     const isUrlAllowed=true
     if (!isUrlAllowed) {
-      // 如要提示允许的白名单，可以在 return 处加上 URL must contain one of the following strings: ${urlWhitelist.join(", ")}
+      // 如要提示允许的白名单，可以在 return 处加上 URL must contain one of the following strings: ${urlWhitelist.join(", "
+)}
       return new Response(` Error: The URL is not in the whitelist.\n https://microsoft.com\n`, { status: 403 })
     }
   }
@@ -80,4 +84,3 @@ export default {
   return fetch(modifiedRequest)
 }
 }
-
