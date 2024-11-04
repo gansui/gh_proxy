@@ -1,4 +1,4 @@
-# 说明：这段代码是由 chatGPT 编写，并部署在 Cloudflare Workers。
+# 说明：这段代码是由 chatGPT 编写，并部署在 Cloudflare Workers。可以pages部署
 
 Documentation: [English version](https://github.com/fscarmen2/gh_proxy/blob/main/README_EN.md) | 中文版
 
