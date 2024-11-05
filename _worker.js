@@ -10,7 +10,7 @@ const targetDomains = [
 //  "https://gist.githubusercontent.com"
 ]
 
-const PADDING = 'xdfxdg'
+let PADDING = 'xdfxdg'
 // URL 白名单字符串
 const urlWhitelist = [
   "user-id-1",
@@ -20,7 +20,6 @@ const urlWhitelist = [
 export default {
   async fetch(request, environment, context) {
 //async function handleRequest(request) {
-
   PADDING = environment.PADDING || PADDING;
   const url = new URL(request.url)
   const path = url.pathname + url.search
@@ -39,7 +38,7 @@ export default {
 
   const padding = targetUrl.split('/')[0] // 获取目标域名
   if(!(padding === PADDING)){
-    return new Response(` Error: Invalid target domain.\ntargetUrl: ${targetUrl}\n`, { status: 399 })
+    return new Response(` Error: Invalid target domain.\npadding: ${padding}`, { status: 399 })
   }
 
   let httpsIndex = targetUrl.indexOf('https://');
@@ -83,4 +82,3 @@ export default {
   return fetch(modifiedRequest)
 }
 }
-
