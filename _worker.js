@@ -20,6 +20,8 @@ const urlWhitelist = [
 export default {
   async fetch(request, environment, context) {
 //async function handleRequest(request) {
+
+  PADDING = environment.PADDING || PADDING;
   const url = new URL(request.url)
   const path = url.pathname + url.search
 
